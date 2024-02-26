@@ -14,6 +14,17 @@ class MenuItemPriceSerializer(serializers.ModelSerializer):
 class MenuItemSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
     prices = MenuItemPriceSerializer(many=True, read_only=True)
+    image_url = serializers.SerializerMethodField()
+    def get_image_url(self, obj):
+        if obj.image:
+            
+            request = self.context.get('request')
+            print(request)
+            if request is not None:
+                return request.build_absolute_uri(obj.image.url)
+        return None
+
+    
     class Meta:
         model = MenuItem
         fields = '__all__'
