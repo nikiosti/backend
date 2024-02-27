@@ -17,6 +17,7 @@ class RestaurateurView(generics.ListAPIView):
         return Restaurateur.objects.filter(user=self.request.user)
 
     def get(self, request, *args, **kwargs):
+        
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset.first())
         return Response(serializer.data)
