@@ -13,8 +13,11 @@ class RestaurantMenuView(APIView):
 
     def get(self, request, *args, **kwargs):
         queryset = Restaurant.objects.filter(owner__user=request.user)
-        serializer = self.serializer_class(queryset, many=True, context={"request":request})
+        serializer = self.serializer_class(
+            queryset, many=True, context={"request": request}
+        )
         return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class RestaurantMenuUserView(generics.RetrieveAPIView):
     serializer_class = RestaurantMenuSerializers
