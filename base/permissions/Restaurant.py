@@ -9,7 +9,8 @@ from rest_framework.exceptions import PermissionDenied
 class CanCreateRestaurant(BasePermission):
     def has_permission(self, request, view):
         if request.method == 'POST':
-            restaurateur = get_object_or_404(Restaurateur, user = request.user)
+            
+            restaurateur = get_object_or_404(Restaurateur, user=request.user)
             restaurant_rate_count = restaurateur.rate.count_restaurants
 
             restaurant_count = Restaurant.objects.filter(owner__user = request.user).count()
