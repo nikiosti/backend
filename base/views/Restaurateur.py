@@ -7,17 +7,17 @@ from rest_framework.response import Response
 from base.serializers.Restaurateur import RestaurateurSerializers
 from base.models.Restaurateur import Restaurateur
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-class RestaurateurView(generics.ListAPIView):
+
+class RestaurateurView(APIView):
     serializer_class = RestaurateurSerializers
-    permission_classes = [IsAuthenticated]
-    pagination_class = None
-
-    def get_queryset(self):
-        return Restaurateur.objects.filter(user=self.request.user)
 
     def get(self, request, *args, **kwargs):
-        
-        queryset = self.get_queryset()
-        serializer = self.serializer_class(queryset.first())
-        return Response(serializer.data)
+        queryset = Restaurateur.objects.filter(user=self.request.user).first()
+        serializer = self.serializer_class(
+            queryset, many=False, context={"request": request}
+        )
+        return Response(serializer.data, status=status.HTTP_200_OK)
