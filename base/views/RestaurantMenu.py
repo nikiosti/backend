@@ -8,15 +8,10 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class RestaurantMenuView(APIView):
+class RestaurantMenuView(generics.RetrieveAPIView):
     serializer_class = RestaurantMenuSerializers
-
-    def get(self, request, *args, **kwargs):
-        queryset = Restaurant.objects.filter(owner__user=request.user).first()
-        serializer = self.serializer_class(
-            queryset, many=False, context={"request": request}
-        )
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        return Restaurant.objects.filter(owner__user=self.request.user)
 
 
 class RestaurantMenuUserView(generics.RetrieveAPIView):

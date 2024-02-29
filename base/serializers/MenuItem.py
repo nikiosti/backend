@@ -24,6 +24,11 @@ class MenuItemSerializers(serializers.ModelSerializer):
             "category_ref", instance.category_ref
         )
 
+        instance.stop_list = validated_data.get("stop_list", instance.stop_list)
+        instance.cooking_time = validated_data.get(
+            "cooking_time", instance.cooking_time
+        )
+
         # Получаем предоставленные в запросе цены
         prices_data = validated_data.pop("prices", [])
 

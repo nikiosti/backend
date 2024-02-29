@@ -29,18 +29,20 @@ class MenuItem(Base):
     category_ref = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="items"
     )
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    weight_in_grams = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True
-    )
+    name = models.CharField("Название", max_length=255)
+    description = models.TextField("Описание", blank=True, null=True)
+
     image = models.ImageField(
-        "Картика",
+        "Изображение",
         upload_to="menu_item/",
         blank=True,
         null=True,
         default=get_default_image,
+    )
+
+    stop_list = models.BooleanField("Стоп лист", default=False)
+    cooking_time = models.CharField(
+        "Время готовки", max_length=255, blank=True, null=True
     )
 
     def __str__(self):
@@ -51,8 +53,8 @@ class MenuItemPrice(Base):
     menu_item_ref = models.ForeignKey(
         MenuItem, on_delete=models.CASCADE, related_name="prices"
     )
-    size_description = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    size_description = models.CharField("Описание", max_length=255)
+    price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
 
 
 @receiver(pre_delete, sender=MenuItem)
