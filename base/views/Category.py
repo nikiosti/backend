@@ -9,13 +9,13 @@ from base.models.Category import Category
 class CategoryCreateView(generics.ListCreateAPIView):
     serializer_class = CategorySerializers
     permission_classes = [
-        IsAuthenticated, 
-        CanCreateCategory,    
+        IsAuthenticated,
+        CanCreateCategory,
     ]
-    
+
     def get_queryset(self):
-        return Category.objects.filter(owner__user = self.request.user)
-    
+        return Category.objects.filter(owner__user=self.request.user)
+
 
 class CategoryUpdateOrDeleteDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializers
@@ -23,6 +23,6 @@ class CategoryUpdateOrDeleteDetailView(generics.RetrieveUpdateDestroyAPIView):
         IsAuthenticated,
         CanUpdateOrDeleteCategory,
     ]
-    
+
     def get_queryset(self):
-        return Category.objects.filter(owner__user = self.request.user)
+        return Category.objects.filter(owner__user=self.request.user)

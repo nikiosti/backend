@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from base.models.Rate import Rate
-from base.models.Restaurateur import Restaurateur
+from base.models.Restaurateur import Restaurateur, RestaurateurFormInLendingPage
 from base.models.Restaurant import Restaurant
 from base.models.Category import Category
 from base.models.MenuItem import MenuItem, MenuItemPrice
@@ -35,3 +35,8 @@ class MenuItemAdmin(admin.ModelAdmin):
 @admin.register(MenuItemPrice)
 class MenuItemPriceAdmin(admin.ModelAdmin):
     list_display = ("id", "size_description")
+
+
+@admin.register(RestaurateurFormInLendingPage)
+class RestaurateurFormInLendingPageAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "phoneOrMessenger")
