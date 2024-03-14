@@ -15,11 +15,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "141.8.199.154",
-    "api.edaded.online",
-]
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -137,10 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # CORS
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 ACCESS_TOKEN_LIFETIME = 25
