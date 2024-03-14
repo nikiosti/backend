@@ -15,7 +15,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["141.8.199.154","api.edaded.online",]
 
 
 INSTALLED_APPS = [
@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # PACKAGE
 INSTALLED_APPS += [
@@ -73,9 +75,13 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'edaded_db',
+        'USER': 'niki',
+        'PASSWORD': '52138201CE08E966021917DB',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -106,7 +112,7 @@ USE_TZ = True
 
 
 STATIC_URL = "static/"
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
