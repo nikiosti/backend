@@ -30,9 +30,6 @@ class RestaurateurView(APIView):
 
 class RestaurateurFormInLendingPageView(generics.ListCreateAPIView):
     serializer_class = RestaurateurFormInLendingPageSerializer
-    permission_classes = [
-        IsAuthenticated,
-    ]
 
     def get_queryset(self):
         return RestaurateurFormInLendingPage.objects.all()
