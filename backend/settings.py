@@ -13,7 +13,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = env("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -74,18 +74,16 @@ TEMPLATES = [
 WSGI_APPLICATION = "backend.wsgi.application"
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": env("NAME"),
-#         "USER": env("USER"),
-#         "PASSWORD": env("PASSWORD"),
-#         "HOST": "localhost",
-#         "PORT": "",
-#     }
-# }
-
-DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "edaded_db"}}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": env("NAME"),
+        "USER": env("USER"),
+        "PASSWORD": env("PASSWORD"),
+        "HOST": "localhost",
+        "PORT": "",
+    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
